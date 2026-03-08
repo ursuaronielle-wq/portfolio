@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronielle Ursua · tech portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0a0c15;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(100, 0, 200, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.15) 0%, transparent 45%),
+                linear-gradient(145deg, #070b14 0%, #131d30 100%);
+            min-height: 100vh;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #edf3ff;
+        }
+
+        /* main portfolio container */
+        .portfolio {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(6, 12, 22, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 3.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 50px 90px -20px #000, 0 0 0 2px rgba(0, 255, 200, 0.15) inset;
+            transition: transform 0.4s;
+            animation: floatIn 0.9s ease-out;
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* header section */
+        .header-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            animation: slideRight 0.6s 0.1s both;
+        }
+
+        .name-title h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #ffffff, #aae0ff, #c49bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            text-shadow: 0 0 30px #0088ff, 4px 4px 0 #001122;
+        }
+
+        .name-title h1 span {
+            font-size: 1.2rem;
+            display: block;
+            color: #9acdff;
+            text-shadow: 0 0 15px cyan;
+        }
+
+        .status-badge {
+            background: #0c1a30;
+            border: 2px solid #00c8ff;
+            border-radius: 60px;
+            padding: 0.8rem 2.2rem;
+            font-weight: 600;
+            color: #b5f0ff;
+            box-shadow: 0 0 35px #00a6ff;
+            animation: glowPulse 2.8s infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 20px #0088ff; }
+            50% { box-shadow: 0 0 50px #00ddff; }
+            100% { box-shadow: 0 0 20px #0088ff; }
+        }
+
+        /* school & training tags */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.8rem 0 2.2rem;
+            animation: slideRight 0.6s 0.15s both;
+        }
+
+        .tag {
+            background: #0e1a2b;
+            border: 1px solid #2f79b0;
+            border-radius: 40px;
+            padding: 0.7rem 2rem;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+            color: #c6ecff;
+            box-shadow: 0 5px 15px black;
+            transition: 0.3s;
+        }
+
+        .tag i {
+            color: #0ff;
+            margin-right: 6px;
+        }
+
+        .tag:hover {
+            background: #1b3352;
+            border-color: #6bc3ff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px #0084ff;
+        }
+
+        /* MAIN LANDING SECTION with IMAGE and NAME */
+        .landing-hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.9fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin: 2rem 0 3rem;
+            background: rgba(0, 20, 40, 0.4);
+            border-radius: 3rem;
+            padding: 2rem 2.5rem;
+            border: 1px solid #0088bb60;
+            animation: glowPop 1s 0.2s both;
+        }
+
+        @keyframes glowPop {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .hero-text {
+            font-size: 1.6rem;
+        }
+
+        .hero-text p {
+            margin: 1rem 0;
+        }
+
+        .hero-highlight {
+            color: #71f0ff;
+            font-weight: 700;
+            background: #102941;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        /* IMAGE CONTAINER — replace src with your actual image */
+        .image-frame {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 0 40px #0077ff);
+        }
+
+        .profile-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+            object-fit: cover;
+            border: 5px solid #0ff;
+            box-shadow: 0 0 70px #00a6ff, 0 20px 30px black;
+            animation: morphImage 10s infinite ease-in-out;
+            background: #123456; /* fallback color while image loads */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23336699"><circle cx="50" cy="50" r="45"/><text x="50" y="70" font-size="50" text-anchor="middle" fill="white">RU</text></svg>');
+            background-size: cover;
+        }
+
+        /* if you have actual image, uncomment and replace "your-image.jpg" */
+        /* .profile-image {
+            background-image: url('ronielle.jpg');
+            background-size: cover;
+        } */
+
+        @keyframes morphImage {
+            0% { border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%; }
+            50% { border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; }
+            100% { border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%; }
+        }
+
+        /* about.me section with contact */
+        .about-section {
+            background: linear-gradient(145deg, #0c1628, #030617);
+            border-radius: 2.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 12px solid #0ff;
+            border-right: 1px solid #0af;
+            box-shadow: 0 0 50px #002244;
+        }
+
+        .about-section h2 {
+            font-size: 2.2rem;
+            color: #c2ecff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: #0f1d30;
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border: 1px solid #2f6b9c;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: #0ff;
+            margin-right: 10px;
+        }
+
+        .contact-card a {
+            color: #aae0ff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            color: cyan;
+            text-decoration: underline;
+        }
+
+        /* LOA-ATP / training programs */
+        .training-section {
+            background: #0a1628;
+            border-radius: 2.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #0088dd;
+            animation: floatBox 7s infinite alternate;
+        }
+
+        @keyframes floatBox {
+            0% { transform: translateY(0); box-shadow: 0 10px 30px #001f3f; }
+            100% { transform: translateY(-10px); box-shadow: 0 30px 60px #003366; }
+        }
+
+        .training-section h3 {
+            font-size: 2rem;
+            background: linear-gradient(145deg, #fff, #0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .program-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.8rem 0;
+        }
+
+        .program-item {
+            background: #112a44;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid #0ff;
+            font-weight: 500;
+            box-shadow: 0 0 30px #0055aa;
+        }
+
+        /* project cards / portfolio web */
+        .section-title {
+            font-size: 2.2rem;
+            margin: 3rem 0 1.8rem;
+            border-left: 12px solid #0ff;
+            padding-left: 1.5rem;
+            color: #d6f0ff;
+            text-shadow: 0 0 15px #0af;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #0d1a2eb3;
+            backdrop-filter: blur(6px);
+            border: 1px solid #2e6a9c;
+            border-radius: 2.2rem;
+            padding: 2rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #6bc8ff;
+            box-shadow: 0 0 50px #0066cc;
+            background: #132b44;
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* interactive JS area */
+        .interactive-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            background: #0d1b2f;
+            border-radius: 60px;
+            padding: 1.2rem 2rem;
+            margin: 3rem 0 2rem;
+            border: 1px solid #1f6da0;
+        }
+
+        .btn {
+            background: #004488;
+            border: none;
+            color: white;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 25px #0077ff;
+        }
+
+        .btn:hover {
+            background: #0066cc;
+            transform: scale(1.05);
+            box-shadow: 0 0 45px #00a6ff;
+        }
+
+        #clickDisplay {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0ff;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* footer */
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            background: #0b1427;
+            border-radius: 80px;
+            padding: 1.2rem 2.2rem;
+            border: 1px solid #2f79b0;
+        }
+
+        .social-links a {
+            color: #b3e4ff;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 1.8rem;
+            transition: 0.2s;
+        }
+
+        .social-links a:hover {
+            color: cyan;
+            transform: scale(1.2) rotate(5deg);
+            display: inline-block;
+        }
+
+        /* modal for work.html */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #0b1428;
+            border: 3px solid cyan;
+            border-radius: 3rem;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 90%;
+            color: white;
+            position: relative;
+            animation: modalRise 0.4s;
+        }
+
+        @keyframes modalRise {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            top: 1.5rem; right: 2rem;
+            font-size: 2.8rem;
+            cursor: pointer;
+            color: cyan;
+        }
+
+        hr {
+            border: 1px solid #2f6080;
+            margin: 1.5rem 0;
+        }
+
+        @keyframes slideRight {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* mobile */
+        @media (max-width: 750px) {
+            .landing-hero { grid-template-columns: 1fr; text-align: center; }
+            .name-title h1 { font-size: 2.8rem; }
+            .profile-image { width: 220px; height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="portfolio">
+    <!-- header row -->
+    <div class="header-row">
+        <div class="name-title">
+            <h1>Ronielle Ursua <span>pattao national high school · SHS</span></h1>
+        </div>
+        <div class="status-badge">⚡ future tech leader</div>
+    </div>
+
+    <!-- tags: school & LOA-ATP -->
+    <div class="tag-container">
+        <div class="tag"><i>🏫</i> pattao national high school · senior high</div>
+        <div class="tag"><i>💻</i> LOA-ATP · Lyceum of Aparri</div>
+        <div class="tag"><i>📚</i> IT training program</div>
+    </div>
+
+    <!-- LANDING SECTION: IMAGE + NAME + DETAILS (viewers see my name and face) -->
+    <div class="landing-hero">
+        <div class="hero-text">
+            <p>👋 Hi! I'm <span class="hero-highlight">Ronielle Ursua</span></p>
+            <p>📍 senior high at pattao national high school</p>
+            <p>💡 "I really like technology and would love to learn more about it!"</p>
+            <p>⚙️ training at LOA-ATP · Lyceum of Aparri</p>
+        </div>
+        <div class="image-frame">
+            <!-- this is where YOUR FACE appears - replace with actual image -->
+            <div class="profile-image" 
+                 style="background-image: url('profile.png'); 
+                       background-size: cover; background-position: center;">
+                <!-- fallback: if you have actual image, change to: style="background-image: url('ronielle.jpg');" -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT.ME section with email and phone -->
+    <div class="about-section">
+        <h2>📋 about.me</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i>📧</i><br>
+                <a href="mailto:ursuaronielle@gmail.com">ursuaronielle@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <i>📱</i><br>
+                <a href="tel:+639387314530">09387314530</a>
+                <span style="color:#8fcbff; display:block;">(Philippines)</span>
+            </div>
+            <div class="contact-card">
+                <i>📍</i><br>
+                <span>pattao national high school · Cagayan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOA-ATP / LYCEUM OF APARRI training details -->
+    <div class="training-section">
+        <h3>🎓 LOA-ATP @ Lyceum of Aparri</h3>
+        <p style="color:#b3e4ff; font-size:1.2rem;">IT training program · skills learned:</p>
+        <div class="program-list">
+            <span class="program-item">📄 microsoft word</span>
+            <span class="program-item">📊 powerpoint</span>
+            <span class="program-item">📈 excel</span>
+            <span class="program-item">⚙️ C++ programming</span>
+            <span class="program-item">🌐 portfolio web (this!)</span>
+        </div>
+        <p style="color:#aad0ff;">"simple programming, office essentials, and web development"</p>
+    </div>
+
+    <!-- portfolio web projects -->
+    <div class="section-title">🌐 my portfolio web · projects</div>
+    <div class="project-grid">
+        <div class="card">
+            <div class="card-icon">📁</div>
+            <h3>portfolio v1</h3>
+            <p>dark themed personal site with animations</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>C++ activities</h3>
+            <p>simple programs from LOA-ATP training</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>excel outputs</h3>
+            <p>spreadsheets & data formatting</p>
+        </div>
+    </div>
+
+    <!-- interactive JS area: view work.html + click counter -->
+    <div class="interactive-bar">
+        <button class="btn" id="viewWorkBtn">📂 view work.html</button>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="btn" id="clickBtn">click here</button>
+            <span id="clickDisplay">0</span>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <span>© 2026 ronielle ursua · pattao NHS · LOA-ATP</span>
+        <div class="social-links">
+            <a href="#">📘</a>
+            <a href="#">📷</a>
+            <a href="#">📧</a>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL for work.html -->
+<div class="modal" id="workModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2 style="color:cyan;">📄 work.html — ronielle's training outputs</h2>
+        <hr>
+        <p><strong>📍 LOA-ATP · Lyceum of Aparri</strong></p>
+        <ul style="margin-left:1.5rem; line-height:2;">
+            <li>✅ microsoft word: document creation</li>
+            <li>✅ powerpoint: presentations</li>
+            <li>✅ excel: spreadsheets & formulas</li>
+            <li>✅ C++: simple programming (loops, conditions)</li>
+            <li>✅ portfolio web: this dark themed site</li>
+        </ul>
+        <hr>
+        <p style="color:#bbffbb;">📌 "ronielle ursua · pattao national high school · senior high"</p>
+        <p style="margin-top:1rem;">📧 ursuaronielle@gmail.com | ☎️ 09387314530</p>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    (function() {
+        // counter
+        let clicks = 0;
+        const clickBtn = document.getElementById('clickBtn');
+        const clickDisplay = document.getElementById('clickDisplay');
+
+        clickBtn.addEventListener('click', function() {
+            clicks++;
+            clickDisplay.textContent = clicks;
+            // micro animation
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => this.style.transform = 'scale(1)', 150);
+            
+            if (clicks === 10) {
+                alert('✨ 10 clicks! Galing mo, Ronielle! Keep learning tech!');
+            } else if (clicks === 25) {
+                alert('🚀 25 clicks — passion for technology!');
+            }
+        });
+
+        // view work.html modal
+        const viewBtn = document.getElementById('viewWorkBtn');
+        const modal = document.getElementById('workModal');
+        const closeModal = document.getElementById('closeModal');
+
+        viewBtn.addEventListener('click', function() {
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+        // image click interaction (show name)
+        const profileImg = document.querySelector('.profile-image');
+        profileImg.addEventListener('click', function() {
+            alert('📸 Ronielle Ursua - pattao NHS, LOA-ATP trainee');
+        });
+
+        // project cards click
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, idx) => {
+            card.addEventListener('click', () => {
+                if (idx === 0) alert('📁 portfolio v1: dark theme, animations — view work.html for more');
+                else if (idx === 1) alert('🖥️ C++ programs: LOA-ATP training (loops, functions basics)');
+                else if (idx === 2) alert('📊 excel outputs: tables, formulas, charts');
+            });
+        });
+
+        // contact email/phone click log
+        console.log('Ronielle portfolio loaded — email: ursuaronielle@gmail.com, phone: 09387314530');
+
+        // additional fun: badge hover effect
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.backgroundColor = '#1a3555';
+            });
+            tag.addEventListener('mouseleave', () => {
+                tag.style.backgroundColor = '';
+            });
+        });
+
+    })();
+</script>
+
+<!-- note: this is a complete index / main.html file. 
+     to use your real photo, replace the background-image in .profile-image with url('ronielle.jpg') 
+     make sure the image is in the same folder -->
+</body>
+</html>
